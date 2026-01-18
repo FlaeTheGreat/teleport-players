@@ -1,0 +1,295 @@
+$C = "../Common.ui";
+
+@ButtonStyle = TextButtonStyle(
+  Default: (
+    Background: #3a7bd5,
+    LabelStyle: (
+      FontSize: 14,
+      TextColor: #ffffff,
+      RenderBold: true,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center
+    )
+  ),
+  Hovered: (
+    Background: #4a8be5,
+    LabelStyle: (
+      FontSize: 14,
+      TextColor: #ffffff,
+      RenderBold: true,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center
+    )
+  ),
+  Pressed: (
+    Background: #2a6bc5,
+    LabelStyle: (
+      FontSize: 14,
+      TextColor: #ffffff,
+      RenderBold: true,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center
+    )
+  )
+);
+
+Group {
+  LayoutMode: Top;
+  Anchor: (Width: 400, Height: 640);
+  Background: #121528(0.96);
+  Padding: (Full: 12);
+
+  Group { Anchor: (Width: 376, Height: 10); }
+
+  // ===== Coordinate Card =====
+  Group {
+    LayoutMode: Top;
+    Anchor: (Width: 376, Height: 96);
+    Background: #171b33(0.92);
+    Padding: (Full: 10);
+
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 40);
+
+      Label { Text: "X:"; Anchor: (Width: 20, Height: 40); Style: (TextColor: #c7cbe6, FontSize: 12, RenderBold: true); }
+      $C.@TextField #XCoord { Anchor: (Width: 96, Height: 40); }
+
+      Label { Text: "Y:"; Anchor: (Width: 20, Height: 40); Style: (TextColor: #c7cbe6, FontSize: 12, RenderBold: true); }
+      $C.@TextField #YCoord { Anchor: (Width: 96, Height: 40); }
+
+      Label { Text: "Z:"; Anchor: (Width: 20, Height: 40); Style: (TextColor: #c7cbe6, FontSize: 12, RenderBold: true); }
+      $C.@TextField #ZCoord { Anchor: (Width: 96, Height: 40); }
+    }
+
+    Group { Anchor: (Width: 356, Height: 8); }
+
+    TextButton #TeleportButton {
+      Anchor: (Width: 356, Height: 28);
+      Text: "Teleport to Coords";
+      Style: @ButtonStyle;
+    }
+  }
+
+  Group { Anchor: (Width: 376, Height: 10); }
+
+  // ===== Player List Panel =====
+  Group {
+    LayoutMode: Top;
+    Anchor: (Width: 376, Height: 448);
+    Background: #171b33(0.92);
+    Padding: (Full: 10);
+
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 20);
+
+      Label {
+        Anchor: (Width: 220, Height: 20);
+        Text: "Players";
+        Style: (FontSize: 14, TextColor: #ffffff, RenderBold: true);
+      }
+
+      Label #PageLabel {
+        Anchor: (Width: 136, Height: 20);
+        Text: "Page 1/1";
+        Style: (FontSize: 12, TextColor: #c7cbe6);
+      }
+    }
+
+    Group { Anchor: (Width: 356, Height: 8); }
+
+    // ====== Rows (8) ======
+
+    // --- Player 1 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P1Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P1Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P1TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P1TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P1Target { Visible: false; Value: ""; }
+      $C.@TextField #P1TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P1TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 2 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P2Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P2Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P2TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P2TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P2Target { Visible: false; Value: ""; }
+      $C.@TextField #P2TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P2TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 3 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P3Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P3Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P3TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P3TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P3Target { Visible: false; Value: ""; }
+      $C.@TextField #P3TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P3TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 4 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P4Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P4Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P4TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P4TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P4Target { Visible: false; Value: ""; }
+      $C.@TextField #P4TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P4TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 5 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P5Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P5Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P5TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P5TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P5Target { Visible: false; Value: ""; }
+      $C.@TextField #P5TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P5TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 6 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P6Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P6Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P6TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P6TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P6Target { Visible: false; Value: ""; }
+      $C.@TextField #P6TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P6TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 7 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P7Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P7Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P7TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P7TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P7Target { Visible: false; Value: ""; }
+      $C.@TextField #P7TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P7TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+
+    Group { Anchor: (Width: 356, Height: 6); }
+
+    // --- Player 8 ---
+    Group {
+      LayoutMode: Left;
+      Anchor: (Width: 356, Height: 44);
+      Background: #10132a(0.75);
+      Padding: (Full: 6);
+
+      Group { LayoutMode: Top; Anchor: (Width: 188, Height: 32);
+        Label #P8Name { Anchor: (Width: 188, Height: 18); Text: ""; Style: (FontSize: 13, TextColor: #ffffff, RenderBold: true); }
+        Label #P8Info { Anchor: (Width: 188, Height: 14); Text: ""; Style: (FontSize: 11, TextColor: #c7cbe6); Padding: (Top: -2); }
+      }
+
+      TextButton #P8TPTo { Anchor: (Width: 74, Height: 32); Text: "TP TO"; Style: @ButtonStyle; }
+      TextButton #P8TPHere { Anchor: (Width: 74, Height: 32); Text: "TP HERE"; Style: @ButtonStyle; }
+
+      $C.@TextField #P8Target { Visible: false; Value: ""; }
+      $C.@TextField #P8TPToAction { Visible: false; Value: "tpTo"; }
+      $C.@TextField #P8TPHereAction { Visible: false; Value: "tpHere"; }
+    }
+  }
+
+  Group { Anchor: (Width: 376, Height: 10); }
+
+  // ===== Page Controls =====
+  Group {
+    LayoutMode: Left;
+    Anchor: (Width: 376, Height: 40);
+
+    TextButton #LastPage { Anchor: (Width: 120, Height: 40); Text: "Last Page"; Style: @ButtonStyle; }
+    Group { Anchor: (Width: 136, Height: 40); }
+    TextButton #NextPage { Anchor: (Width: 120, Height: 40); Text: "Next Page"; Style: @ButtonStyle; }
+  }
+
+  // ===== Hidden Action Fields =====
+  $C.@TextField #TeleportButtonAction { Visible: false; Value: "teleport"; }
+  $C.@TextField #NextPageAction { Visible: false; Value: "nextPage"; }
+  $C.@TextField #LastPageAction { Visible: false; Value: "lastPage"; }
+}
